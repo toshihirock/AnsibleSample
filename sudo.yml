@@ -1,0 +1,11 @@
+---
+- hosts: all
+  sudo: yes
+
+  tasks:
+  - name: Install sudo
+    yum: name=sudo
+
+  #- name: Add sudo user
+    #lineinfile: dest=/etc/sudoers backup=yes line='toshihiro ALL=(ALL) NOPASSWD:ALL' validate='visudo -cf %s'
+  - lineinfile: dest=/etc/sudoers backup=yes line='toshihiro ALL=(ALL) NOPASSWD:ALL' validate='/usr/sbin/visudo -cf %s'

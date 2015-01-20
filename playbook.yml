@@ -1,0 +1,8 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+   - name: add a group
+     group: name=test-group gid=10000
+   - name: add a new user
+     user: name=toshihiro shell=/bin/bash uid=10001 groups="test-group"
