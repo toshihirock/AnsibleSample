@@ -41,7 +41,7 @@ case "$1" in
     export ANSIBLE_HOST_KEY_CHECKING=False
     export PYTHONUNBUFFERED=1
     export ANSIBLE_FORCE_COLOR=true
-    ansible-playbook -i hosts -u docker $2
+    ansible-playbook -i hosts $2
     ;;
   test)
     if ! is_running_docker ; then

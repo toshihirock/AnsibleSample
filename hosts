@@ -1,2 +1,2 @@
 [Docker]
-Docker ansible_ssh_host=172.17.0.38
+Docker ansible_ssh_user=docker ansible_ssh_host=DOCKER_IP
