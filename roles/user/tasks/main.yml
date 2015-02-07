@@ -1,0 +1,16 @@
+---
+- name: Add groups
+  group: name={{ item.key }} gid={{ item.value.gid }}
+  with_dict: group
+
+- name: Add users
+  user: name={{ item.key }} uid={{ item.value.uid }} group={{ item.value.group }} shell=/bin/bash
+  with_dict: user
+
+- name: Install sudo
+  yum: name=sudo
+
+- name: Append sudoers file
+  lineinfile: dest=/etc/sudoers backup=yes line='{{ item.key }} ALL=(ALL) NOPASSWD:ALL' validate='/usr/sbin/visudo -cf %s'
+  with_dict: user
+  when:  item.value.sudo == true

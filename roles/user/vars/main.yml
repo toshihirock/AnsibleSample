@@ -1,0 +1,16 @@
+---
+group:
+  dev:
+    gid: 1000
+  monitor:
+    gid: 1001
+
+user:
+  toshi-dev:
+    uid: 2000
+    group: dev
+    sudo: true
+  toshi-monitor:
+    uid: 2001
+    group: monitor
+    sudo: false

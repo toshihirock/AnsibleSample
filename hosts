@@ -1,1 +1,2 @@
-192.168.33.80
+[Docker]
+Docker ansible_ssh_host=172.17.0.15
