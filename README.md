@@ -12,6 +12,7 @@
 $ssh-keygen
 $cp ~/.ssh/rsa_id.pub authorized_keys
 $docker build -t docker/ansible
+$bundle install
 ```
 
 # ansible.sh
