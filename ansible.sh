@@ -1,7 +1,5 @@
 #!/bin/bash
  
-set -e
- 
 DOCKER_NAME="docker/ansible"
 DEFAULT_IP="DOCKER_IP"
 SCRIPT_NAME="ansible.sh"
@@ -52,7 +50,7 @@ case "$1" in
     fi
     IP=`get_ip`
     DIR=`ls -F spec/ |grep / |sed -e "s/\///g"`
-    echo ${DIR}
+    #echo ${DIR}
     mv "spec/${DIR}" "spec/${IP}"
     bundle exec rake
     mv "spec/${IP}" "spec/${DIR}"
