@@ -1,0 +1,26 @@
+---
+# set dns
+- name: Set DNS(ifcfg)
+  lineinfile: dest=/etc/sysconfig/network-scripts/ifcfg-eth0 line="DNS1={{ dns }}"
+  when: dns is defined
+
+- name: Set DNS(resolve.conf)
+  template: src=dns.j2 dest=/etc/resolve.conf
+  when: dns is defined
+
+# set proxy
+- name: Set bash proxy
+  template: src=proxy.j2 dest=/etc/profile.d/proxy.sh
+  when: proxy_env is defined
+
+- name: Set csh proxy
+  command: cp /etc/profile.d/proxy.sh /etc/profile.d/proxy.csh
+  when: proxy_env is defined
+
+- name: Set csh proxy(Replace export to setenv)
+  replace: dest=/etc/profile.d/proxy.csh regexp=export replace=setenv
+  when: proxy_env is defined
+
+- name: Set yum proxy
+  lineinfile: dest=/etc/yum.conf line="proxy={{ proxy_env.http_proxy }}"
+  when: proxy_env is defined
