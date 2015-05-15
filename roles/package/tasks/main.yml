@@ -1,0 +1,25 @@
+---
+- name: Set epel repo
+  yum: name=http://ftp.riken.jp/Linux/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm
+  environment: proxy_env
+
+- name: Install packages
+  yum: pkg={{ item }} state=latest 
+  environment: proxy_env
+  with_items:
+    - libxml2-devel
+    - perl-core
+    - sysstat
+    - dstat
+    - telnet
+    - subversion
+    - git
+    - jq
+    - sos
+    - yum-plugin-versionlock
+    - nkf
+    - tcpdump
+
+- name: Install s3cmd using epel
+  yum: name=s3cmd enablerepo=epel
+  environment: proxy_env
