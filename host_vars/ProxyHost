@@ -1,0 +1,6 @@
+proxy_host: foo
+proxy_port: bar
+
+proxy_env:
+  http_proxy: "http://{{ proxy_host }}:{{ proxy_port }}"
+  https_proxy: "http://{{ proxy_host }}:{{ proxy_port }}"
