@@ -1,0 +1,22 @@
+---
+- name: Copy td repo
+  template: src=td.repo dest=/etc/yum.repos.d/td.repo mode=0644
+
+- name: Install packages depends on td-agent
+  yum: name={{ item }} state=latest
+  environment: proxy_env
+  with_items:
+    - libcurl
+    - libcurl-devel
+    - gcc
+
+- name: Install td-agent using td repo
+  yum: name=td-agent enablerepo=td state=latest
+  environment: proxy_env
+
+- name: Install fluentd plugins
+  command: /usr/lib64/fluent/ruby/bin/fluent-gem install {{ item }}
+  environment: proxy_env
+  with_items:
+    - fluent-plugin-forest
+    - fluent-plugin-rewrite
