@@ -1,0 +1,9 @@
+---
+- name: Set Tokyo time
+  command: cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+- name: Set Mtu Size
+  lineinfile: dest=/etc/rc.d/rc.local line="/sbin/ip link set dev eth0 mtu 1000"
+
+- name: Reset Mtu size
+  command: /etc/rc.d/rc.local
